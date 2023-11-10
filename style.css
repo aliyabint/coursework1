@@ -1,0 +1,75 @@
+/* Reset default margin and padding for the entire page */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E3D5CA;
+}
+
+/* Style the navigation bar */
+.navbar {
+    background-color: #ccd5ae;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar img {
+    width: 180px; /* Set the desired width */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+.checkout-button {
+    position: absolute;
+    top: 39px; /* Adjust the top value to control the vertical position */
+    right: 10px; /* Adjust the right value to control the horizontal position */
+
+}
+
+
+/* Style the content */
+.content {
+    padding: 20px;
+}
+
+.search-bar {
+    display: flex;
+    padding-right: 300px;
+   
+}
+
+.search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 300px;
+}
+
+.search-bar button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+
+
