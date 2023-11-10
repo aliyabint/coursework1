@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Add Font Awesome for icons -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <title>Simple Page</title>
+</head>
+
+
+<body>
+    <div class="navbar">
+        <img src="images/header2.png" alt="Navigation Image">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Subjects</a></li>
+            <li><a href="#">Contact</a></li>
+
+        </ul>
+        <!-- Add the cart icon -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+            <button>Search</button>
+        </div>
+    
+    </div>
+
+    <div id="app">
+        <header>
+            <h1>
+                <img v-if="!showProduct" src="checkout-image.png" alt="Checkout Image">
+                <h1 v-text="sitename"></h1>
+            </h1>
+            <button class="checkout-button" @click="showCheckout">
+                {{ cartItemCount }}
+                <span class="fas fa-cart-plus"></span> Checkout
+            </button>
+        </header>
+        <main>
+            <div v-if="showProduct">
+                <figure>
+                    <img :src="product.image">
+                </figure>
+                <h2 v-text="product.title"></h2>
+                <p v-html="product.description"></p>
+                <p>Price: {{ product.price }}</p>
+                <p>Availability: {{ product.availableInventory }}</p>
+                <button @click="addToCart" v-if="canAddToCart">
+                    Add to cart
+                </button>
+                <button disabled="disabled" v-else>
+                    Add to cart
+                </button>
+            </div>
+            <div v-else>
+                <h2>Checkout</h2>
+            </div>
+        </main>
+    </div>
+    <script type="text/javascript">
+        let webstore = new Vue({
+            el: "#app",
+            data: {
+                sitename: "CLASSES",
+                showProduct: true,
+                product: {
+                    id: 1001,
+                    title: "ART",
+                    description: "A 25 pound bag of <em>irresistible</em>, " + "organic goodness for your cat",
+                    price: 2000,
+                    image: "images/art.png",
+                    availableInventory: 5,
+                },
+                cart: [],
+            },
+            methods: {
+                addToCart: function () {
+                    if (this.canAddToCart && this.product.availableInventory > 0) {
+                        this.cart.push(this.product.id);
+                        this.product.availableInventory--; // Decrease availability
+                    }
+                },
+                showCheckout() {
+                    this.showProduct = !this.showProduct;
+                },
+            },
+            computed: {
+                cartItemCount: function () {
+                    return this.cart.length || '';
+                },
+                canAddToCart: function () {
+                    return this.product.availableInventory > 0;
+                },
+            },
+        });
+    </script>
+</body>
+</html>
